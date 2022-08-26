@@ -17,6 +17,9 @@ const repeatBtn = $('.btn-repeat')
 const playlist=$('.playlist')
 const volume=$('.volumn')
 const amthanh= $('.volunm')
+const updateFile=$('#fileUp')
+const messErro=$$('.mess-erro')
+console.log(updateFile)
 console.log(playBtn)
 console.dir(audio)
 
@@ -38,12 +41,20 @@ const app = {
               
         },
         {
+            name: "Tự sự",
+            singer: "Orange ",
+            path: "./music/tusu.mp3",
+            image:"./image/img/memberthename.jpg"
+              
+        },
+        {
             name: "Đi đi đi",
             singer: "Vicetone,K-ICM,T-ICM,Kelsey,Zickky ",
             path: "./music/NAVADA-dididi.mp3",
             image:"./image/img/di-di-di.jpeg"
               
         },
+       
         {
             name: "Người âm phủ",
             singer: "OSAD",
@@ -63,9 +74,9 @@ const app = {
             image: "./image/img/sieucodon.jpg"
         },
         {
-            name: "Phía sau em",
-            singer: "Kay trần x BinZ",
-            path: "./music/phiasauem.mp3",
+            name: "Mặt mộc",
+            singer: "Phạm Nguyên Ngọc",
+            path: "./music/mmoc.mp3",
             image: "./image/img/phiasauem.jpg"
         },
         {
@@ -87,13 +98,6 @@ const app = {
             singer: "Phan Mạnh Quỳnh",
             path: "./music/triki.mp3",
             image:"./image/img/triki.jpg"
-              
-        },
-        {
-            name: "Can't remember the name",
-            singer: "No love ",
-            path: "./music/Can'trememberthename.mp3",
-            image:"./image/img/memberthename.jpg"
               
         },
         {
@@ -122,9 +126,9 @@ const app = {
                             <h3 class="title">${song.name}</h3>
                             <p class="author">${song.singer}</p>
                         </div>
-                        <div class="option">
-                            <i class="fas fa-ellipsis-h"></i>
-                        </div>
+                        <a href="${song.path}"class="option hisdel" download="${song.name}">
+                            <i class='bx bx-download'></i>  
+                        </a>
                     </div>
                 `;
         })
@@ -139,6 +143,12 @@ const app = {
     },
     handelEvents:function(){
         const _this=this;
+
+        updateFile.onchange=function(){
+            let file = updateFile.files[0]
+            console.dir(file)
+        }
+
         playBtn.onclick = function(){
             if(_this.isPlaying){
                 audio.pause()
@@ -282,6 +292,42 @@ const app = {
                 _this.currentVolume=audio.volume
             }
         }
+
+        messErro.forEach(mes=>{
+            mes.addEventListener('click',e=>{
+                const main = document.getElementById('toast');
+                
+                toastText =` 
+                <div class="toast toast--error">
+                    <div class="toast__icon">
+                        <i class="fa-solid fa-bomb"></i>
+                    </div>
+                    <div class="toast__body">
+                        <h3 class="toast__title">
+                            success
+                        </h3>
+                        <div class="toast__msg">Chương trình fake và trình mình kém nên chức năng tạm thời chưa dùng được</div>
+                    </div>
+                    <div class="toast__close">
+                        <i class="fa-solid fa-circle-xmark"></i>
+                    </div>
+                </div>
+                `
+                main.innerHTML=toastText;
+                // const autoRemoveId= setTimeout(function(){
+                //     main.innerHTML="";
+                // }, 2000);
+
+                // Remove toast when clicked
+                toast.onclick = function(e){
+                    if(e.target.closest('.toast__close')){
+                        main.innerHTML="";
+                        clearTimeout(autoRemoveId);
+                    }
+                }
+            })
+        })
+        
 
     },
 
