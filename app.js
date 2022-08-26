@@ -19,6 +19,7 @@ const volume=$('.volumn')
 const amthanh= $('.volunm')
 const updateFile=$('#fileUp')
 const messErro=$$('.mess-erro')
+const option= $$('.option')
 console.log(updateFile)
 console.log(playBtn)
 console.dir(audio)
@@ -250,7 +251,7 @@ const app = {
             const songNode=e.target.closest(".song:not(.active)")
             if(songNode||e.target.closest(".option")){
                 // xử lý khi click vào song
-                if(songNode){
+                if(songNode && !e.target.closest(".option")){
                    _this.currentIndex=Number(songNode.dataset.index)
                    _this.loadCurrentSong()
                    audio.play()
@@ -258,11 +259,14 @@ const app = {
                 }
                 // xử lý khi click vào song option
                 if(e.target.closest(".option")){
-
+                   console.log("saiiii")
                 }
             }
         }
-
+        option.forEach(op=>{ 
+            op.stopPropagation()
+        })
+        
         volume.onclick= function(){
             _this.isVolume=!_this.isVolume
             volume.classList.toggle('hidden',_this.isVolume)
