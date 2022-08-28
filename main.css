@@ -25,6 +25,7 @@ body{
     font-family:"sans-serif",sans-serif;
     display: flex;
     justify-content:center;
+    user-select: none;
 }
 
 li{
@@ -69,6 +70,9 @@ a{
 .zm-navbar--item{
     /* background: #ccc; */
     padding: 10px 0;
+}
+.zm-navbar--item:hover{
+    background: var(--background);
 }
 
 .zm-navbar--item .klick {
@@ -135,6 +139,9 @@ a{
     background-color:#7200a1;
     cursor: pointer;
 }
+.login-navbar button:hover{
+    background-color:#3e0357;
+}
 .box{
     width: 100%;
     padding-left: 30px;
@@ -156,6 +163,10 @@ a{
 .header-search i{
     font-size: 24px;
     margin: 0 10px;
+}
+
+.header-search .bx-left-arrow-alt{
+    opacity: 0.5;
 }
 
 .header-search .search{
@@ -366,6 +377,11 @@ i{
 }
 .volumn.hidden .bx-volume-mute{
     display: inline-block;
+}
+
+.progress,
+.volunm{
+    cursor: pointer;
 }
 
 #toast{
