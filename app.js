@@ -133,6 +133,7 @@ const app = {
                     </div>
                 `;
         })
+        console.log(htmls)
         playlist.innerHTML = htmls.join('');
     },
     defineProperties:function(){
@@ -156,8 +157,7 @@ const app = {
             }
             else{
                 audio.play()
-            }
-            
+            }   
         }
         audio.onplay = function(){
             _this.isPlaying = true
